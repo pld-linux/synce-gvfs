@@ -1,3 +1,8 @@
+# TODO:
+#	- doesn't work (Mount failed: DBus error org.freedesktop.DBus.Error.InvalidArgs: 
+#         Argument 5 is specified to be of type "s", but is actually of type "b")
+#	- probably bogus BR: libstdc++-devel
+#
 Summary:	GVFS module for accessing Windows CE and Pocket PC devices
 Summary(pl.UTF-8):	Moduł GVFS służący do dostępu do urządzeń Windows CE i Pocket PC
 Name:		synce-gvfs
