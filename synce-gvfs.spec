@@ -8,7 +8,7 @@ Summary:	GVFS module for accessing Windows CE and Pocket PC devices
 Summary(pl.UTF-8):	Moduł GVFS służący do dostępu do urządzeń Windows CE i Pocket PC
 Name:		synce-gvfs
 Version:	0.4
-Release:	1
+Release:	2
 License:	LGPL v2
 Group:		Applications/Communications
 Source0:	http://downloads.sourceforge.net/synce/%{name}-%{version}.tar.gz
@@ -22,9 +22,10 @@ BuildRequires:	gvfs-devel
 BuildRequires:	intltool
 BuildRequires:	libstdc++-devel
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.559
 BuildRequires:	synce-librapi2-devel >= 0.12
-%requires_eq_to	synce-librapi2 synce-librapi2-devel
-Requires(post,postun):  shared-mime-info
+%requires_ge_to	synce-librapi2 synce-librapi2-devel
+Requires(post,postun):	shared-mime-info
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
