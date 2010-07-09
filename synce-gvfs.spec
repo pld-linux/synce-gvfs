@@ -1,6 +1,4 @@
 # TODO:
-#	- doesn't work (Mount failed: DBus error org.freedesktop.DBus.Error.InvalidArgs:
-#         Argument 5 is specified to be of type "s", but is actually of type "b")
 #	- probably bogus BR: libstdc++-devel
 # NOTES
 # - gvfs interface is still experimental and has no public interface, therefore
@@ -10,7 +8,7 @@ Summary:	GVFS module for accessing Windows CE and Pocket PC devices
 Summary(pl.UTF-8):	Moduł GVFS służący do dostępu do urządzeń Windows CE i Pocket PC
 Name:		synce-gvfs
 Version:	0.4
-Release:	0.1
+Release:	1
 License:	LGPL v2
 Group:		Applications/Communications
 Source0:	http://downloads.sourceforge.net/synce/%{name}-%{version}.tar.gz
