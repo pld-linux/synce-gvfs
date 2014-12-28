@@ -16,7 +16,7 @@ Source0:	http://downloads.sourceforge.net/synce/%{name}-%{version}.tar.gz
 Source1:	http://ftp.gnome.org/pub/GNOME/sources/gvfs/1.6/gvfs-1.6.2.tar.bz2
 # Source1-md5:	6ed1d943d1c1b8b15a6b180a6cd51043
 URL:		http://www.synce.org/
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.18
 BuildRequires:	gvfs-devel
 BuildRequires:	intltool
