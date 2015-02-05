@@ -1,5 +1,3 @@
-# TODO:
-#	- probably bogus BR: libstdc++-devel
 # NOTES
 # - gvfs interface is still experimental and has no public interface, therefore
 #   source it's source is needed to build. see README for details
@@ -7,25 +5,31 @@
 Summary:	GVFS module for accessing Windows CE and Pocket PC devices
 Summary(pl.UTF-8):	Moduł GVFS służący do dostępu do urządzeń Windows CE i Pocket PC
 Name:		synce-gvfs
-Version:	0.4
-Release:	2
-License:	LGPL v2
+Version:	0.7.2
+Release:	1
+License:	LGPL v2+
 Group:		Applications/Communications
 Source0:	http://downloads.sourceforge.net/synce/%{name}-%{version}.tar.gz
-# Source0-md5:	78c4133f0a43859c0fa45ead9c44f62c
-Source1:	http://ftp.gnome.org/pub/GNOME/sources/gvfs/1.6/gvfs-1.6.2.tar.bz2
-# Source1-md5:	6ed1d943d1c1b8b15a6b180a6cd51043
+# Source0-md5:	c7967c73debdedb47ea0c0317f9b40ce
+%define	gvfs_ver	1.22.3
+Source1:	http://ftp.gnome.org/pub/GNOME/sources/gvfs/1.22/gvfs-%{gvfs_ver}.tar.xz
+# Source1-md5:	7e6d026addb1658fb24b39e8827d7650
 URL:		http://www.synce.org/
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.18
-BuildRequires:	gvfs-devel
-BuildRequires:	intltool
-BuildRequires:	libstdc++-devel
+BuildRequires:	glib2-devel >= 1:2.26
+# FIXME: gvfs-libs
+BuildRequires:	gvfs >= %{gvfs_ver}
+#BuildRequires:	gvfs-devel >= %{gvfs_ver}
+BuildRequires:	intltool >= 0.35.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.559
-BuildRequires:	synce-librapi2-devel >= 0.12
-%requires_ge_to	synce-librapi2 synce-librapi2-devel
+BuildRequires:	synce-core-lib-devel >= 0.17
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Requires(post,postun):	shared-mime-info
+Requires:	glib2 >= 1:2.26
+Requires:	gvfs >= %{gvfs_ver}
+Requires:	synce-core-lib >= 0.17
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -40,7 +44,8 @@ Pocket PC. Jest on częścią projektu SynCE: <http://www.synce.org/>.
 %setup -q -a1
 
 %build
-GVFS_SOURCE=$(echo gvfs-*)
+GVFS_SOURCE=$(pwd)/gvfs-%{gvfs_ver}
+LDFLAGS="%{rpmldflags} -L%{_libdir}/gvfs"
 %configure \
 	--with-gvfs-source=$GVFS_SOURCE \
 	--disable-update-mime-database \
@@ -64,7 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_libdir}/gvfsd-synce
 %{_iconsdir}/gnome/*/apps/synce-gvfs.png
 %{_datadir}/gvfs/mounts/synce.mount
