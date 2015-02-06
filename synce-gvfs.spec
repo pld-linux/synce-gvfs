@@ -17,9 +17,8 @@ Source1:	http://ftp.gnome.org/pub/GNOME/sources/gvfs/1.22/gvfs-%{gvfs_ver}.tar.x
 URL:		http://www.synce.org/
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.26
-# FIXME: gvfs-libs
-BuildRequires:	gvfs >= %{gvfs_ver}
-#BuildRequires:	gvfs-devel >= %{gvfs_ver}
+# for private libgvfscommon.so shared library (API taken from gvfs source)
+BuildRequires:	gvfs-libs >= %{gvfs_ver}
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.559
